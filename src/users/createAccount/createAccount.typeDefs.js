@@ -1,6 +1,6 @@
-import { gql } from "apollo-server-express";
+const {gql} = require("apollo-server-express"); 
 
-export default gql`
+const typeDefs= gql`
   type Mutation {
     createAccount(
       firstName: String!
@@ -11,3 +11,4 @@ export default gql`
     ): MutationResponse!
   }
 `;
+module.exports=typeDefs

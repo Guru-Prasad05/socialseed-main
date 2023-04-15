@@ -1,7 +1,9 @@
-import { gql } from "apollo-server-express";
+const {gql} = require("apollo-server-express"); 
 
-export default gql`
+const typeDefs=gql`
     type Query{
     seePhotoComments(id:Int!,page:Int):[Comment]
 }
 `;
+
+module.exports=typeDefs

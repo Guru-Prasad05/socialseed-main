@@ -1,6 +1,6 @@
-import { gql } from "apollo-server-express";
+const { gql } = require ("apollo-server-express");
 
-export default gql`
+const typeDefs=gql`
     type Comment{
         id:Int!
         user:User!
@@ -11,3 +11,4 @@ export default gql`
         updateAt:String
     }
 `
+module.exports=typeDefs

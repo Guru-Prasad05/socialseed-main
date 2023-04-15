@@ -1,6 +1,6 @@
-import client from "../client";
+const client = require("../client");
 
-export default {
+module.exports= {
   User: {
     totalFollowing: ({ id }) =>
       client.user.count({

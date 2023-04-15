@@ -1,6 +1,6 @@
-import client from "../client";
+const client = require("../client");
 
-export default {
+module.exports= {
   Room: {
     users: ({ id }) => client.room.findUnique({ where: { id } }).users(),
     messages: ({ id }) => client.message.findMany({ where: { roomId: id } }), //pagination
@@ -12,11 +12,11 @@ export default {
           where: {
             read: false,
             roomId: id,
-            user:{
-              id:{
-                not:loggedInUser.id
-              }
-            }
+            user: {
+              id: {
+                not: loggedInUser.id,
+              },
+            },
           },
         });
       }

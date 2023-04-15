@@ -1,9 +1,9 @@
-import { withFilter } from "apollo-server-express";
-import { NEW_MESSAGE } from "../../constant";
-import pubsub from "../../pubsub";
-import client from "../../client";
+const { withFilter } = require("apollo-server-express");
+const { NEW_MESSAGE } = require("../../constant");
+const pubsub = require("../../pubsub");
+const client =require( "../../client");
 
-export default {
+module.exports= {
   Subscription: {
     roomUpdates: {
       subscribe: async (root, args, context, info) => {

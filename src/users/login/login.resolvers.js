@@ -1,8 +1,8 @@
-import client from "../../client.js";
-import bcrypt from "bcrypt";
-import  jwt  from "jsonwebtoken";
+const client =require ("../../client");
+const bcrypt = require("bcrypt");
+const  jwt  = require("jsonwebtoken");
 
-export default {
+module.exports= {
   Mutation: {
     login: async (_, { username, password }) => {
       //find user with args.username

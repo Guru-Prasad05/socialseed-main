@@ -1,7 +1,7 @@
-import client from "../../client";
-import { protectedResolvers } from "../../users/users.utils";
+const client = require("../../client");
+const { protectedResolvers } =require ("../../users/users.utils");
 
-export default {
+module.exports= {
   Mutation: {
     deleteComment: protectedResolvers(async (_, { id }, { loggedInUser }) => {
       const comment = await client.comment.findUnique({

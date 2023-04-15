@@ -1,9 +1,9 @@
-import { compare } from "bcrypt";
-import client from "../../client";
-import { protectedResolvers } from "../../users/users.utils";
-import { processHashtag } from "../photos.utils";
+const { compare } = require ("bcrypt");
+const client =require ("../../client");
+const { protectedResolvers } =require ("../../users/users.utils");
+const { processHashtag } =require ("../photos.utils");
 
-export default {
+module.exports= {
   Mutation: {
     editPhoto: protectedResolvers(async (_, { id, caption }, loggedInUser) => {
       const oldPhoto = await client.photo.findFirst({

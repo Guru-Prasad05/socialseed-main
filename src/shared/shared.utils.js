@@ -6,7 +6,7 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-export const uploadPhoto = async (file, userId,folderName) => {
+ const uploadPhoto = async (file, userId,folderName) => {
   try {
     const { filename, createReadStream } = await file;
     const newFilenm = filename.replace(/\.[^/.]+$/, "");
@@ -27,3 +27,5 @@ export const uploadPhoto = async (file, userId,folderName) => {
     );
   }
 };
+
+module.exports=uploadPhoto

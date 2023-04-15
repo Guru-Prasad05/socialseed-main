@@ -1,9 +1,10 @@
-import client from "../../client";
-import { NEW_MESSAGE } from "../../constant";
-import pubsub from "../../pubsub";
-import { protectedResolvers } from "../../users/users.utils";
+const client =require ("../../client");
+const { protectedResolvers } =require ("../../users/users.utils");
+const { NEW_MESSAGE } = require( "../../constant");
+const pubsub =require( "../../pubsub");
 
-export default {
+
+module.exports= {
   Mutation: {
     sendMessage: protectedResolvers(
       async (_, { payload, roomId, userId }, { loggedInUser }) => {

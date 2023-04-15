@@ -1,7 +1,9 @@
-import { gql } from "apollo-server-express";
+const {gql} = require("apollo-server-express");
 
-export default gql`
+const typeDefs=gql`
   type Mutation {
     editComment(id: Int!, payload: String!): MutationResponse!
   }
 `;
+
+module.exports=typeDefs

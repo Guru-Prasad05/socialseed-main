@@ -1,6 +1,6 @@
-import { gql } from "apollo-server-express";
+const {gql} = require("apollo-server-express"); 
 
-export default gql`
+ const typeDefs=gql`
   type LoginResult {
     ok: Boolean!
     token: String
@@ -11,3 +11,5 @@ export default gql`
     login(username: String!, password: String!): LoginResult!
   }
 `;
+
+module.exports=typeDefs

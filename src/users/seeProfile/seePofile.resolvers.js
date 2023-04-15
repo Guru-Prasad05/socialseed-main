@@ -1,6 +1,7 @@
-import client from "../../client.js";
+const client =require ("../../client");
 
-export default {
+
+module.exports= {
   Query: {
     seeProfile: (_, { username }) =>
       client.user.findUnique({

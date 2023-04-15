@@ -1,9 +1,11 @@
-import { hash } from "bcrypt";
 
-export const processHashtag = (caption) => {
+
+ const processHashtag = (caption) => {
   const hashtags = caption.match(/#[\w]+/g) || [];
   return hashtags.map((hashtag) => ({
     where: { hashtag },
     create: { hashtag },
   }));
 };
+
+module.exports=processHashtag

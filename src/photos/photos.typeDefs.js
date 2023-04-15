@@ -1,6 +1,6 @@
-import { gql } from "apollo-server-express";
+const {gql} = require("apollo-server-express");
 
-export default gql`
+const typeDefs=gql`
   type Photo {
     id: Int!
     user: User!
@@ -31,3 +31,5 @@ export default gql`
     updatedAt: String!
   }
 `;
+
+module.exports=typeDefs

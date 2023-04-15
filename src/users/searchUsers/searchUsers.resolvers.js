@@ -1,6 +1,7 @@
-import client from "../../client";
+const client =require ("../../client");
 
-export default {
+
+module.exports= {
   Query: {
     searchUsers: async (_, { keyword, lastId }) => {
       const users = await client.user.findMany({

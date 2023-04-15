@@ -1,7 +1,7 @@
-import client from "../../client";
-import { protectedResolvers } from "../users.utils";
+const client =require ("../../client");
+const { protectedResolvers } =require ("../../users/users.utils");
 
-export default {
+module.exports= {
   Query: {
     me: protectedResolvers((_, __, { loggedInUser }) =>
       client.user.findUnique({ where: { id: loggedInUser.id } })

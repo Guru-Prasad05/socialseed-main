@@ -1,7 +1,8 @@
-import client from "../../client.js";
-import bcrypt from "bcrypt";
+const client =require ("../../client");
 
-export default {
+const bcrypt = require ("bcrypt");
+
+module.exports= {
   Mutation: {
     createAccount: async (
       _,

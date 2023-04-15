@@ -2,17 +2,21 @@
   "name": "social-seed",
   "version": "1.0.0",
   "description": "Social Seed",
-  "main": "index.js",
-  
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/server.js",
+    "start": "node src/server.js ",
     "migrate": "npx prisma migrate dev --preview-feature",
     "studio": "npx prisma studio",
-    "build": "parcel build src/server.js"
+    "build": "babel src/server.js -d dist"
   },
   "author": "Guru Prasad",
   "license": "ISC",
   "dependencies": {
+    "@graphql-tools/graphql-file-loader": "^7.5.17",
+    "@graphql-tools/load": "7.8.14",
+    "@graphql-tools/load-files": "^6.6.1",
+    "@graphql-tools/merge": "^8.4.1",
+    "@graphql-tools/schema": "^9.0.18",
     "@prisma/client": "^2.14.0",
     "apollo-server-express": "^2.19.2",
     "bcrypt": "^5.1.0",
@@ -21,18 +25,17 @@
     "express": "^4.17.1",
     "g": "^2.0.1",
     "graphql": "^15.4.0",
-    "graphql-tools": "^7.0.2",
+    "graphql-tools": "^8.3.20",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
     "npm-force-resolutions": "0.0.10"
   },
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.3",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
     "@prisma/cli": "^2.14.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-es2018": "^1.0.0",
     "nodemon": "^2.0.22"
   }
 }

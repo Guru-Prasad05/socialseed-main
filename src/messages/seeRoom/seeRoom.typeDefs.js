@@ -1,7 +1,9 @@
-import { gql } from "apollo-server-express";
+const { gql } = require("apollo-server-express");
 
-export default gql`
-    type Query{
-        seeRoom(id:Int!):Room
-    }
-`
+const typeDefs=gql`
+  type Query {
+    seeRoom(id: Int!): Room
+  }
+`;
+
+module.exports =typeDefs

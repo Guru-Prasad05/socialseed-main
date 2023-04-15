@@ -1,7 +1,9 @@
-import { gql } from "apollo-server-express";
+const {gql} = require("apollo-server-express"); 
 
-export default gql`
+const typeDefs=gql`
   type Mutation {
     deletePhoto(id: Int!): MutationResponse!
   }
 `;
+
+module.exports=typeDefs

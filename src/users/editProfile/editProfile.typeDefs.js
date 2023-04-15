@@ -1,6 +1,7 @@
-import { gql } from "apollo-server-express";
+const {gql} = require("apollo-server-express"); 
 
-export default gql`
+const typeDefs=gql`
+scalar Upload
 type EditMutationResponse{
     ok:String!
     error:String
@@ -18,3 +19,5 @@ type EditMutationResponse{
     ): EditMutationResponse!
   }
 `;
+
+module.exports=typeDefs

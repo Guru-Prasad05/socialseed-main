@@ -1,6 +1,7 @@
-import client from "../../client";
+const client =require ("../../client");
 
-export default {
+
+module.exports= {
   Query: {
     searchPhotos: (_, { keyword }) =>
       client.photo.findMany({ where: { caption: { startsWith: keyword } } }),

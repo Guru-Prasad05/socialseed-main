@@ -1,6 +1,7 @@
-import client from "../../client";
+const client =require ("../../client");
 
-export default {
+
+module.exports= {
   Query: {
     seePhotoComments: (_, { id, page }) =>
       client.comment.findMany({

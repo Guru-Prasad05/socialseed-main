@@ -1,6 +1,5 @@
-import { gql } from "apollo-server-express";
-
-export default gql`
+const {gql} = require("apollo-server-express");
+const typeDefs=gql`
   type User {
     id: Int!
     firstName: String!
@@ -20,3 +19,5 @@ export default gql`
     isFollowing: Boolean!
   }
 `;
+
+module.exports=typeDefs

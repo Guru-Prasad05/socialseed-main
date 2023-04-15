@@ -1,11 +1,12 @@
-import jwt from "jsonwebtoken";
-import client from "../client.js";
-export const getUser = async (token) => {
+const jwt = require ("jsonwebtoken");
+const client = require ("../client.js");
+
+ const getUser = async (token) => {
   try {
     if (!token) {
       return null;
     }
-    const { id } = await jwt.verify(token, process.env.SECRET_KEY);
+    const { id } = jwt.verify(token, process.env.SECRET_KEY);
     const loggedInUser = await client.user.findUnique({ where: { id } });
     if (loggedInUser) {
       return loggedInUser;
@@ -17,7 +18,7 @@ export const getUser = async (token) => {
   }
 };
 
-export function protectedResolvers(ourResolvers) {
+ function protectedResolvers(ourResolvers) {
   return function (root, args, context, info) {
     if (!context.loggedInUser) {
       const query = info.operation.operation === "query";
@@ -32,4 +33,9 @@ export function protectedResolvers(ourResolvers) {
     }
     return ourResolvers(root, args, context, info);
   };
+}
+
+module.exports={
+  getUser,
+  protectedResolvers
 }

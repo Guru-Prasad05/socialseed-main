@@ -1,5 +1,5 @@
-import {PubSub} from "apollo-server-express"
+const {PubSub} =require( "apollo-server-express")
 
 const pubsub= new PubSub();
 
-export default pubsub;
+module.exports= pubsub;

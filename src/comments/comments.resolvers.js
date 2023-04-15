@@ -1,4 +1,4 @@
-export default{
+module.exports={
     Comment:{
         isMine: ({ userId }, _, { loggedInUser }) => {
             if (!loggedInUser) {

@@ -1,6 +1,7 @@
-import client from "../../client";
+const client =require ("../../client");
 
-export default {
+
+module.exports= {
   Query: {
     seeFollowers: async (_, { username, page }) => {
       const ok = await client.user.findUnique({

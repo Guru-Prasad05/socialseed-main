@@ -1,6 +1,6 @@
-import client from "../client";
+const client = require("../client");
 
-export default {
+module.exports= {
   Photo: {
     user: ({ userId }) => client.user.findUnique({ where: { id: userId } }),
 

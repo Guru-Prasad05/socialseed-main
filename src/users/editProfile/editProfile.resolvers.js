@@ -1,8 +1,9 @@
-import fs from "fs";
-import client from "../../client";
-import bcrypt from "bcrypt";
-import { protectedResolvers } from "../users.utils";
-import { uploadPhoto } from "../../shared/shared.utils";
+const fs = require ("fs");
+const client =require ("../../client");
+const { protectedResolvers } =require ("../../users/users.utils");
+const bcrypt = require ("bcrypt");
+
+const { uploadPhoto } = require( "../../shared/shared.utils");
 
 const resolverFn = async (
   _,
@@ -50,7 +51,7 @@ const resolverFn = async (
   }
 };
 
-export default {
+module.exports= {
   Mutation: {
     editProfile: protectedResolvers(resolverFn),
   },

@@ -1,9 +1,10 @@
-import { gql } from "apollo-server-express";
+const {gql} = require("apollo-server-express");
 
-export default gql`
+const typeDefs=gql`
   type MutationResponse {
     ok: Boolean!
     id: Int
     error: String
   }
 `;
+module.exports=typeDefs
