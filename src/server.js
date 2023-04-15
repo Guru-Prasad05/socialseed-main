@@ -1,5 +1,5 @@
 process.env.NODE_ENV === 'production'
-require("dotenv").config();
+
 const http =require ("http")
 const  express = require( "express");
 const logger =require( "morgan");
