@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node src/server.js ",
     "migrate": "npx prisma migrate dev --preview-feature",
-    "studio": "npx prisma studio",
-    "build": "babel src/server.js -d dist"
+    "studio": "npx prisma studio"
+    
   },
   "author": "Guru Prasad",
   "license": "ISC",
