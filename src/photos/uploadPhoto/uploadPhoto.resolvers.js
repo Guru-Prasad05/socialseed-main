@@ -2,7 +2,7 @@ const client = require("../../client");
 const { protectedResolvers } = require("../../users/users.utils");
 const { uploadPhoto } = require("../../shared/shared.utils");
 
-const { processHashtag } = require("../photos.utils");
+const  processHashtag  = require("../photos.utils");
 module.exports= {
   Mutation: {
     uploadPhoto: protectedResolvers(
