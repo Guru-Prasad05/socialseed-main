@@ -23,7 +23,7 @@ cloudinary.config({
     return cloudinaryResponse.secure_url;
   } catch (error) {
     throw new Error(
-      "There is a problem uploading your photo. Please try again!!!"
+      error
     );
   }
 };

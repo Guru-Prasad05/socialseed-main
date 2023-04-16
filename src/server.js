@@ -4,6 +4,7 @@ if(process.env.NODE_ENV !== 'production'){
 
 const http =require ("http")
 const  express = require( "express");
+const cors=require("cors")
 const logger =require( "morgan");
 const  { ApolloServer} =require("apollo-server-express");
 const  {typeDefs, resolvers}  = require ("./schema");
@@ -45,6 +46,7 @@ const apollo = new ApolloServer({
 
 const app = express();
 app.use(logger("tiny"));
+app.use(cors())
 apollo.applyMiddleware({ app });
 
 

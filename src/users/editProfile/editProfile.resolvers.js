@@ -3,7 +3,7 @@ const client =require ("../../client");
 const { protectedResolvers } =require ("../../users/users.utils");
 const bcrypt = require ("bcrypt");
 
-const { uploadPhoto } = require( "../../shared/shared.utils");
+const  uploadPhoto  = require( "../../shared/shared.utils");
 
 const resolverFn = async (
   _,
