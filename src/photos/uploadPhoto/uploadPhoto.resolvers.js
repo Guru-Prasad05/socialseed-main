@@ -13,6 +13,7 @@ module.exports= {
           hashtagObjs = processHashtag(caption);
           //get or create hashtag
         }
+        
         const fileUrl = await uploadPhoto(file, loggedInUser.id, "upload");
         console.log(fileUrl)
         const result = await client.photo.create({

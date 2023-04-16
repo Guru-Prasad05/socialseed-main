@@ -1,16 +1,19 @@
-process.env.NODE_ENV === 'production'
+if(process.env.NODE_ENV !== 'production'){
+  require('dotenv').config()
+}
 
 const http =require ("http")
 const  express = require( "express");
 const logger =require( "morgan");
 const  { ApolloServer} =require("apollo-server-express");
-const  schema  = require ("./schema");
+const  {typeDefs, resolvers}  = require ("./schema");
 const { getUser } = require("./users/users.utils.js");
 const PORT = process.env.PORT;
 
 
 const apollo = new ApolloServer({
- schema,
+ typeDefs,
+ resolvers,
   context: async (ctx) => {
     if (ctx.req) {
       return {
