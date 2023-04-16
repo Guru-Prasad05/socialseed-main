@@ -17,7 +17,7 @@ cloudinary.config({
       {
         folder: `SocialSeed/${folderName}`,
         public_id: objectName,
-        allowed_formats: ["jpg", "png"],
+        
       }
     );
     return cloudinaryResponse.secure_url;
