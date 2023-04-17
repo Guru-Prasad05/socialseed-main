@@ -1,9 +1,9 @@
-const fs = require ("fs");
-const client =require ("../../client");
-const { protectedResolvers } =require ("../../users/users.utils");
-const bcrypt = require ("bcrypt");
-
-const  uploadPhoto  = require( "../../shared/shared.utils");
+const fs = require("fs");
+const client = require("../../client");
+const { protectedResolvers } = require("../../users/users.utils");
+const bcrypt = require("bcrypt");
+const uploadPhoto = require("../../shared/shared.utils");
+const { GraphQLUpload } = require("apollo-server-express");
 
 const resolverFn = async (
   _,
@@ -11,8 +11,15 @@ const resolverFn = async (
   { loggedInUser }
 ) => {
   let avatarUrl = null;
-  if (avatar) {
-    avatarUrl = await uploadPhoto(avatar, loggedInUser.id, "avatars");
+  const { createReadStream, filename } = await avatar.file;
+
+  if (filename) {
+    avatarUrl = await uploadPhoto(
+      createReadStream,
+      loggedInUser.id,
+      "avatars",
+      filename
+    );
     // const { filename, createReadStream } = await avatar;
     // const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
     // const readStream = createReadStream();
@@ -51,7 +58,8 @@ const resolverFn = async (
   }
 };
 
-module.exports= {
+module.exports = {
+  Upload: GraphQLUpload,
   Mutation: {
     editProfile: protectedResolvers(resolverFn),
   },

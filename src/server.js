@@ -1,20 +1,23 @@
-if(process.env.NODE_ENV !== 'production'){
-  require('dotenv').config()
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
 }
 
-const http =require ("http")
-const  express = require( "express");
-const cors=require("cors")
-const logger =require( "morgan");
-const  { ApolloServer} =require("apollo-server-express");
-const  {typeDefs, resolvers}  = require ("./schema");
+const http = require("http");
+const express = require("express");
+const cors = require("cors");
+const logger = require("morgan");
+const { ApolloServer } = require("apollo-server-express");
+const { graphqlUploadExpress } = require("graphql-upload");
+const { typeDefs, resolvers } = require("./schema");
 const { getUser } = require("./users/users.utils.js");
 const PORT = process.env.PORT;
 
 
+
 const apollo = new ApolloServer({
- typeDefs,
- resolvers,
+  typeDefs,
+  resolvers,
+  uploads: false,
   context: async (ctx) => {
     if (ctx.req) {
       return {
@@ -46,9 +49,15 @@ const apollo = new ApolloServer({
 
 const app = express();
 app.use(logger("tiny"));
-app.use(cors())
-apollo.applyMiddleware({ app });
-
+app.use(cors());
+app.use(
+  "/graphql",
+  graphqlUploadExpress({
+    maxFileSize: 10000000,
+    maxFiles: 10,
+  }),
+);
+apollo.applyMiddleware({ app, bodyParserConfig: {}, uploads: false });
 
 const httpServer = http.createServer(app);
 apollo.installSubscriptionHandlers(httpServer);

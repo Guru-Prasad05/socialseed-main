@@ -1,4 +1,5 @@
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary").v2;
+const fs=require("fs")
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -6,26 +7,31 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
- const uploadPhoto = async (file, userId,folderName) => {
+const uploadPhoto = async (createReadStream, userId, folderName, filename) => {
+  const objectName = `${userId}-${Date.now()}-${filename}`;
   try {
-    const { filename, createReadStream } = await file;
-    const newFilenm = filename.replace(/\.[^/.]+$/, "");
-    const stream = createReadStream();
-    const objectName = `${userId}-${Date.now()}-${newFilenm}`;
-    const cloudinaryResponse = await cloudinary.v2.uploader.upload(
-      stream.path,
-      {
-        folder: `SocialSeed/${folderName}`,
-        public_id: objectName,
-        
-      }
-    );
-    return cloudinaryResponse.secure_url;
+    const uploadResponse = await new Promise((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        {
+          folder: `SocialSeed/${folderName}`,
+          public_id: objectName,
+          resource_type: "auto",
+        },
+        (error, result) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(result);
+          }
+        }
+      );
+      createReadStream().pipe(stream);
+    });
+    return uploadResponse.secure_url ;
   } catch (error) {
-    throw new Error(
-      error.message
-    );
+    console.error(error);
+    return { success: false };
   }
 };
 
-module.exports=uploadPhoto
+module.exports = uploadPhoto;

@@ -4,7 +4,7 @@
   "description": "Social Seed",
   "main": "server.js",
   "scripts": {
-    "start": "node src/server.js ",
+    "start": "nodemon src/server.js ",
     "migrate": "npx prisma migrate dev --preview-feature",
     "studio": "npx prisma studio"
   },
@@ -16,13 +16,14 @@
     "@prisma/client": "^2.14.0",
     "apollo-server-express": "^2.19.2",
     "bcrypt": "^5.1.0",
-    "cloudinary": "^1.35.0",
+    "cloudinary": "^1.36.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "g": "^2.0.1",
     "graphql": "^15.4.0",
     "graphql-tools": "^8.3.20",
+    "graphql-upload": "^13.0.0",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
     "npm-force-resolutions": "0.0.10"
