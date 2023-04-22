@@ -13,8 +13,8 @@ module.exports = {
       }
       await client.follower.create({
         data: {
-          user: { connect: { id: loggedInUser.id } },
-          follower: { connect: { id } },
+          userId: { connect: { id: loggedInUser.id } },
+          followerId: { connect: { id } },
         },
       });
       return {
