@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgres://gurupsd:S6UhURuCOfQ9R0wJhnOERwOz4tBNVdSL@dpg-ch208mlgk4qarqmrtglg-a.oregon-postgres.render.com/socialseed_jxzp"
 }
 
 generator client {
