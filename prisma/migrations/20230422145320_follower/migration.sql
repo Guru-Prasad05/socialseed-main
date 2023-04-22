@@ -109,6 +109,9 @@ CREATE UNIQUE INDEX "User.username_unique" ON "User"("username");
 CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "userId_followerId" ON "Follower"("userId", "followerId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Hashtag.hashtag_unique" ON "Hashtag"("hashtag");
 
 -- CreateIndex

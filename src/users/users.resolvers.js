@@ -6,10 +6,8 @@ module.exports = {
       client.user.count({
         where: {
           followers: {
-            follower: {
-              some: {
-                userId: id,
-              },
+            some: {
+              userId: id,
             },
           },
         },
@@ -19,10 +17,8 @@ module.exports = {
       client.user.count({
         where: {
           following: {
-            follower: {
-              some: {
-                followerId: id,
-              },
+            some: {
+              followerId: id,
             },
           },
         },

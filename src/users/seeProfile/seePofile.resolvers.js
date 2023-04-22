@@ -7,10 +7,6 @@ module.exports = {
         where: {
           username,
         },
-        include:{
-          followers:true,
-          following:true
-        }
       }),
   },
 };
