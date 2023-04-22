@@ -9,7 +9,7 @@ module.exports = {
           OR: [
             {
               user: {
-                following: {
+                followers: {
                   some: {
                     userId: loggedInUser.id,
                   },
