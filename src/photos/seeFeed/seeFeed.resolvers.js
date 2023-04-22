@@ -1,7 +1,7 @@
-const client =require ("../../client");
-const { protectedResolvers } =require ("../../users/users.utils");
+const client = require("../../client");
+const { protectedResolvers } = require("../../users/users.utils");
 
-module.exports= {
+module.exports = {
   Query: {
     seeFeed: protectedResolvers((_, __, { loggedInUser }) =>
       client.photo.findMany({
@@ -9,9 +9,9 @@ module.exports= {
           OR: [
             {
               user: {
-                followers: {
+                following: {
                   some: {
-                    id: loggedInUser.id,
+                    userId: loggedInUser.id,
                   },
                 },
               },

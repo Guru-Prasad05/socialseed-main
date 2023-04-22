@@ -1,7 +1,7 @@
 const client = require("../../client");
 const { protectedResolvers } = require("../../users/users.utils");
 
-module.exports= {
+module.exports = {
   Mutation: {
     createComment: protectedResolvers(
       async (_, { photoId, payload }, { loggedInUser }) => {
@@ -15,7 +15,7 @@ module.exports= {
             error: "Photo not found",
           };
         }
-       const newComment = await client.comment.create({
+        const newComment = await client.comment.create({
           data: {
             payload,
             photo: { connect: { id: photoId } },
@@ -25,6 +25,7 @@ module.exports= {
         return {
           ok: true,
           id: newComment.id,
+          createAt: newComment.createAt,
         };
       }
     ),

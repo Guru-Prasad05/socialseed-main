@@ -11,23 +11,25 @@ const resolverFn = async (
   { loggedInUser }
 ) => {
   let avatarUrl = null;
-  const { createReadStream, filename } = await avatar.file;
+  if (avatar) {
+    const { createReadStream, filename } = await avatar.file;
 
-  if (filename) {
-    avatarUrl = await uploadPhoto(
-      createReadStream,
-      loggedInUser.id,
-      "avatars",
-      filename
-    );
-    // const { filename, createReadStream } = await avatar;
-    // const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
-    // const readStream = createReadStream();
-    // const writeStream = fs.createWriteStream(
-    //   process.cwd() + "/upload/" + newFilename
-    // );
-    // readStream.pipe(writeStream);
-    // avatarUrl = `http://localhost:4000/static/${newFilename}`;
+    if (filename) {
+      avatarUrl = await uploadPhoto(
+        createReadStream,
+        loggedInUser.id,
+        "avatars",
+        filename
+      );
+      // const { filename, createReadStream } = await avatar;
+      // const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
+      // const readStream = createReadStream();
+      // const writeStream = fs.createWriteStream(
+      //   process.cwd() + "/upload/" + newFilename
+      // );
+      // readStream.pipe(writeStream);
+      // avatarUrl = `http://localhost:4000/static/${newFilename}`;
+    }
   }
 
   let hashPassword = null;

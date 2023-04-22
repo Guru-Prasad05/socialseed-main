@@ -4,7 +4,7 @@ const typeDefs=gql`
     type seeFollowingResult{
         ok:Boolean!
         error:String
-        following: [User]
+        following: [Follower]
     }
      type Query{
         seeFollowing(username:String!, lastId:Int):seeFollowingResult

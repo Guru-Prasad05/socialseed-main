@@ -1,29 +1,27 @@
-const client =require ("../../client");
-const { protectedResolvers } =require ("../../users/users.utils");
+const client = require("../../client");
+const { protectedResolvers } = require("../../users/users.utils");
 
-module.exports= {
+module.exports = {
   Mutation: {
     unfollowUser: protectedResolvers(
       async (_, { username }, { loggedInUser }) => {
-        const ok = await client.user.findUnique({ where: { username } });
+        const ok = await client.user.findUnique({
+          where: { username },
+          select: { id: true },
+        });
+        console.log(ok);
         if (!ok) {
           return {
             ok: false,
             error: "Can't unfollow user.",
           };
         }
-        await client.user.update({
-          where: { id: loggedInUser.id },
-          data: {
-            following: {
-              disconnect: {
-                username,
-              },
-            },
-          },
+        await client.follower.deleteMany({
+          where: { userId: loggedInUser.id, followerId: ok.id },
         });
         return {
-          ok: true,  
+          ok: true,
+          id: ok.id,
         };
       }
     ),

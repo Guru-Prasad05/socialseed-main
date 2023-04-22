@@ -9,14 +9,21 @@ const typeDefs=gql`
     bio: String
     avatar: String
     photos: [Photo]
-    following: [User]
-    followers: [User]
+    followers: [Follower!]!
+    following: [Follower!]!
     createAt: String!
     updatedAt: String!
     totalFollowing: Int!
     totalFollowers: Int!
     isMe: Boolean!
     isFollowing: Boolean!
+  }
+  type Follower{
+    id:Int!
+    user:User!
+    userId: Int!
+    follower:User!
+    followerId:Int!
   }
 `;
 

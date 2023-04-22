@@ -1,21 +1,16 @@
 const client = require("../client");
 
-module.exports= {
+module.exports = {
   User: {
     totalFollowing: ({ id }) =>
-      client.user.count({
-        where: {
-          followers: {
-            some: { id },
-          },
-        },
+      client.follower.count({
+        where: { userId: id },
       }),
+
     totalFollowers: ({ id }) =>
-      client.user.count({
+      client.follower.count({
         where: {
-          following: {
-            some: { id },
-          },
+          followerId: id,
         },
       }),
     isMe: ({ id }, _, { loggedInUser }) => {
@@ -29,8 +24,12 @@ module.exports= {
         return false;
       }
       const exists = await client.user.count({
-        where: { username: loggedInUser.username, following: { some: { id } } },
+        where: {
+          id,
+          following: { some: { userId: loggedInUser.id } },
+        },
       });
+      console.log(exists);
       return Boolean(exists);
     },
     photos: ({ id }) => client.user.findUnique({ where: { id } }).photos(),

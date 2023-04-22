@@ -1,7 +1,6 @@
-const client =require ("../../client");
+const client = require("../../client");
 
-
-module.exports= {
+module.exports = {
   Query: {
     seeFollowing: async (_, { username, lastId }) => {
       const ok = await client.user.findUnique({
@@ -15,16 +14,15 @@ module.exports= {
           error: "User not found",
         };
       }
-      const following = await client.user
-        .findUnique({ where: { username } })
-        .following({
-          take: 5,
-          skip: lastId ? 1 : 0,
-          ...(lastId && { cursor: { id: lastId } }),
-        });
+      
+      const followings = await client.follower.findMany({
+        where: { userId: ok.id },
+        select:{follower:true},
+      });
+      
       return {
         ok: true,
-        following,
+        following:followings,
       };
     },
   },

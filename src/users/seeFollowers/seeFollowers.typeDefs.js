@@ -4,11 +4,10 @@ const typeDefs=gql`
     type SeeFollowersResult{
         ok:Boolean!
         error:String
-        followers:[User]
-        totalPages:Int
+        followers:[Follower]
     }
     type Query{
-        seeFollowers(username:String!,page:Int!):SeeFollowersResult! 
+        seeFollowers(username:String!,lastId:Int):SeeFollowersResult! 
     }
 `
 module.exports=typeDefs

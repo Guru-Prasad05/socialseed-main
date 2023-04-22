@@ -14,23 +14,32 @@ generator client {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   firstName String
   lastName  String?
-  username  String    @unique
-  email     String    @unique
+  username  String     @unique
+  email     String     @unique
   password  String
   bio       String?
   avatar    String?
   photos    Photo[]
   likes     Like[]
-  followers User[]    @relation("FollowRelation",references: [id])
-  following User[]    @relation("FollowRelation",references: [id])
+  following Follower[] @relation("User_following")
+  followers Follower[] @relation("User_follower")
   comments  Comment[]
   rooms     Room[]
   messages  Message[]
-  createAt  DateTime  @default(now())
-  updateAt  DateTime  @updatedAt
+  createAt  DateTime   @default(now())
+  updateAt  DateTime   @updatedAt
+}
+
+model Follower {
+  id         Int  @id @default(autoincrement())
+  user       User @relation("User_following", fields: [userId], references: [id])
+  userId     Int
+  follower   User @relation("User_follower", fields: [followerId], references: [id])
+  followerId Int
+  @@unique([userId,followerId], name:"userId_followerId")
 }
 
 model Photo {
