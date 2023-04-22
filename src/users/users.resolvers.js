@@ -3,22 +3,16 @@ const client = require("../client");
 module.exports = {
   User: {
     totalFollowing: ({ id }) =>
-    client.user
-    .count({
-      where: {
-        id,
-      },
-    })
-    .following(),
+      client.follower.count({
+        where: { userId: id },
+      }),
 
     totalFollowers: ({ id }) =>
-      client.user
-        .count({
-          where: {
-            id,
-          },
-        })
-        .followers(),
+      client.follower.count({
+        where: {
+          followerId: id,
+        },
+      }),
     isMe: ({ id }, _, { loggedInUser }) => {
       if (!loggedInUser) {
         return false;
