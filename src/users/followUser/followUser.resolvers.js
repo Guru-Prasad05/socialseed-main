@@ -11,10 +11,10 @@ module.exports = {
           error: "This user doesn't exist.",
         };
       }
-      await client.user.create({
+      await client.follower.create({
         data: {
-          following: { connect: { userId: loggedInUser.id } },
-          followerId: { connect: { id } },
+          user: { connect: { userId: loggedInUser.id } },
+          follower: { connect: { followerId: id } },
         },
       });
       return {
