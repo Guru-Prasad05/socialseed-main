@@ -11,9 +11,9 @@ module.exports = {
           error: "This user doesn't exist.",
         };
       }
-      await client.follower.create({
+      await client.user.create({
         data: {
-          userId: { connect: { id: loggedInUser.id } },
+          following: { connect: { userId: loggedInUser.id } },
           followerId: { connect: { id } },
         },
       });
