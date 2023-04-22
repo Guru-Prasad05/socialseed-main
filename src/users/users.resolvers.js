@@ -7,7 +7,7 @@ module.exports = {
         where: {
           followers: {
             some: {
-              userId: id,
+            id,
             },
           },
         },
@@ -18,7 +18,7 @@ module.exports = {
         where: {
           following: {
             some: {
-              followerId: id,
+             id,
             },
           },
         },
