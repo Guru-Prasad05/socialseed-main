@@ -36,7 +36,7 @@ module.exports = {
       const exists = await client.user.count({
         where: {
           id,
-          following: { some: { userId: loggedInUser.id } },
+          followers: { some: { userId: loggedInUser.id } },
         },
       });
       console.log(exists);
