@@ -36,6 +36,7 @@ model Follower {
   userId     Int
   follower   User @relation("User_follower", fields: [followerId], references: [id])
   followerId Int
+  @@unique([userId,followerId])
 }
 
 model Photo {
