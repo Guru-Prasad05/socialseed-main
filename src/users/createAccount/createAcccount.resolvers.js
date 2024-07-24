@@ -35,7 +35,7 @@ module.exports= {
       } catch (e) {
         return {
           ok: false,
-          error: "Can't create account.",
+          error: e.message,
         };
       }
     },
